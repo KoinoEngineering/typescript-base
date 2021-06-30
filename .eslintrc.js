@@ -1,49 +1,38 @@
 const warn = process.env.NODE_ENV === "development" ? "warn" : "error";
 
 module.exports = {
-    "env": {
-        "es6": true,
-        "node": true
+    env: {
+        es2021: true,
+        node: true,
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended"
-    ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+    extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+        ecmaVersion: 12,
+        sourceType: "module",
     },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": 11,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint"
-    ],
-    "rules": {
-        "indent": "off",
-        "no-unused-vars": "off",
+    plugins: ["@typescript-eslint"],
+    rules: {
         "no-console": warn,
-        "block-spacing": "error",
-        "object-curly-spacing": [
-            "error",
-            "always"
-        ],
+        "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "error",
-        "@typescript-eslint/no-explicit-any": "error",
-        "@typescript-eslint/indent": [
+        indent: [
             "error",
             4,
             {
-                "SwitchCase": 1
-            }
+                SwitchCase: 1,
+            },
         ],
-        "semi": "error",
-        "quotes": [
+        "linebreak-style": ["error", "unix"],
+        quotes: [
             "error",
-            "double"
-        ]
-    }
+            "double",
+            {
+                allowTemplateLiterals: true,
+            },
+        ],
+        semi: ["error", "always"],
+        "comma-dangle": ["error", "always-multiline"],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+    },
 };
